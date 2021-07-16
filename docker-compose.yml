@@ -6,7 +6,7 @@ services:
     build: ./go/
     tty: true
     volumes:
-      - ./go/goAPIs
+      - ./go/goAPIs:/app
     ports:
       - "8085:80"
     depends_on:
@@ -20,14 +20,14 @@ services:
       MYSQL_DATABASE: CAtech
       TZ: "Asia/Tokyo"
     volumes:
-      - /mysql/init:/docker-entrypoint-initdb.d
-      - DB-data:/var/lib/mysql
-      - /mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./mysql/init:/docker-entrypoint-initdb.d
+      - ./data:/var/lib/mysql
+      - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
     ports:
       - 3306:3306
 
 volumes:
-  DB-data:
+  data:
 
 
 
