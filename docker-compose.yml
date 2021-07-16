@@ -3,19 +3,33 @@ version: "3.8"
 services:
   api:
     container_name: goAPI
-    build:
-      dockerfile: dockerfile
+    build: ./go/
     tty: true
     volumes:
-      - ./go/goAPIs
+      - ./go/goAPIs:/app
     ports:
       - "8085:80"
     depends_on:
       -  mysql
 
   mysql:
-    container_name: api
+    container_name: mysqlDB
     build: ./mysql/
+    env_file:  ./mysql/.env
     environment:
-      MYSQL_ROOT_PASSWORD
+      MYSQL_DATABASE: CAtech
+      TZ: "Asia/Tokyo"
+    volumes:
+      - ./mysql/init:/docker-entrypoint-initdb.d
+      - ./data:/var/lib/mysql
+      - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+    ports:
+      - 3306:3306
+
+volumes:
+  data:
+
+
+
+
 
