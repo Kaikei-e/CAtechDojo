@@ -16,6 +16,21 @@ services:
   mysql:
     container_name: api
     build: ./mysql/
+    env_file:  .env
     environment:
-      MYSQL_ROOT_PASSWORD
+      MYSQL_DATABASE: CAtech
+      TZ: "Asia/Tokyo"
+    volumes:
+      - /mysql/init:/docker-entrypoint-initdb.d
+      - DB-data:/var/lib/mysql
+      - /mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+    ports:
+      - 3306:3306
+
+volumes:
+  DB-data:
+
+
+
+
 
