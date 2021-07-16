@@ -1,13 +1,12 @@
 package manageuser
 
 import (
-	"net/http"
+	jwtauth "app/JWTauth"
 
 	"github.com/gin-gonic/gin"
 )
 
 func CreateUser(ctx *gin.Context){
-	ctx.JSON(http.StatusOK, gin.H{
-		"test": "hello world",
-	})
+	jwtauth.JWTTokenMaker(ctx)
+
 }

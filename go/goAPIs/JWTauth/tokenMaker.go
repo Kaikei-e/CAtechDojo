@@ -1,6 +1,7 @@
-package jwt
+package jwtauth
 
 import (
+	userstruct "app/userStruct"
 	"log"
 	"net/http"
 	"os"
@@ -11,11 +12,17 @@ import (
 	"github.com/joho/godotenv"
 )
 
-func JWTTokenMaker(ctx *gin.Context, name string) error{
+func JWTTokenMaker(ctx *gin.Context){
+	user := userstruct.User{}
+	if err := ctx.Bind(&user); err != nil{
+		ctx.String(http.StatusBadRequest, "Bad request")
+		return
+	}
+
 	jToken := jwt.New(jwt.SigningMethodHS256)
 
 	claims := jToken.Claims.(jwt.MapClaims)
-	claims["name"] = name
+	claims["name"] = user.Name
 	claims["iat"] = time.Now()
 	claims["exp"] = time.Now().Add(time.Hour * 720).Unix()
 
@@ -30,13 +37,12 @@ func JWTTokenMaker(ctx *gin.Context, name string) error{
 
 	if tokenSig,  err := jToken.SignedString(secret); err != nil{
 		log.Fatalln(err)
-		return err
 		}else{
 		tokenSignature = tokenSig
 
 	}
 
-	return ctx.JSON(http.StatusOK, map[string]string{
+	ctx.JSON(http.StatusOK, map[string]string{
 		"token": tokenSignature,
 	})
 
