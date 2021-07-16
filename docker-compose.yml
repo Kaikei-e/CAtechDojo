@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  api:
+    container_name: goAPI
+    build:
+      dockerfile: dockerfile
+    tty: true
+    volumes:
+      - ./go/goAPIs
+    ports:
+      - "8085:80"
+    depends_on:
+      -  mysql
+
+  mysql:
+    container_name: api
+    build: ./mysql/
+    environment:
+      MYSQL_ROOT_PASSWORD
+
