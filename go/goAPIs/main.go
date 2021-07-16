@@ -1,6 +1,7 @@
 package main
 
 import (
+	manageuser "app/manageUser"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -14,6 +15,8 @@ func main(){
 			"test": "hello world",
 		})
 	})
+
+	router.GET("/user/create", manageuser.CreateUser)
 
 	router.Run(":8085")
 }
