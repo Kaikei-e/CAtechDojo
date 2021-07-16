@@ -7,6 +7,8 @@ import (
 )
 
 func CreateUser(ctx *gin.Context){
-	jwtauth.JWTTokenMaker(ctx)
+	theToken := jwtauth.JWTTokenMaker(ctx)
+
+	jwtauth.ParseJWT(theToken)
 
 }
