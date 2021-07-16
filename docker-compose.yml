@@ -3,8 +3,7 @@ version: "3.8"
 services:
   api:
     container_name: goAPI
-    build:
-      dockerfile: dockerfile
+    build: ./go/
     tty: true
     volumes:
       - ./go/goAPIs
@@ -14,9 +13,9 @@ services:
       -  mysql
 
   mysql:
-    container_name: api
+    container_name: mysqlDB
     build: ./mysql/
-    env_file:  .env
+    env_file:  ./mysql/.env
     environment:
       MYSQL_DATABASE: CAtech
       TZ: "Asia/Tokyo"
