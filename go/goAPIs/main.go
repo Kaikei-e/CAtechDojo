@@ -18,6 +18,7 @@ func main(){
 
 	router.GET("/user/get", manageuser.GetUserToken)
 	router.POST("/user/create", manageuser.CreateUser)
+	router.PUT("/user/update", manageuser.UpdateUserData)
 
 
 	router.Run(":8085")

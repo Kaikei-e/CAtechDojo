@@ -20,7 +20,7 @@ func DBconnection() *gorm.DB{
 
 	DBMS := "mysql"
 	user := "root"
-	proto := "tcp(172.25.0.2:3306)"
+	proto := "tcp(172.25.0.3:3306)"
 	DBname := "CAtech"
 
 	configure := user + ":" + pass + "@" + proto + "/" + DBname
