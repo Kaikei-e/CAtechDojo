@@ -10,7 +10,7 @@ import (
 	"github.com/joho/godotenv"
 )
 
-func ParseJWT(jwtToken string) (*userstruct.User, error){
+func ParseJWT(jwtToken string) (*userstruct.Users, error){
 	if err := godotenv.Load(); err != nil{
 		log.Fatalln("Error loading .env file" +  err.Error())
 
@@ -44,7 +44,7 @@ func ParseJWT(jwtToken string) (*userstruct.User, error){
 		return nil, fmt.Errorf("Can't find  id in %s", jwtToken)
 	}
 
-	return &userstruct.User{
+	return &userstruct.Users{
 		Name: userName,
 	}, nil
 }

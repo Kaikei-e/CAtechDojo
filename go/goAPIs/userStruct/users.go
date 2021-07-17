@@ -1,7 +1,7 @@
 package userstruct
 
-type User struct{
-	Id int `json:"id"`
+type Users struct{
+	Id int `gorm:"column:id"`
 	Name string `json:"name"`
 	Token string `json:"token"`
 }
