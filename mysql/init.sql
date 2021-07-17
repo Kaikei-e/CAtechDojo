@@ -2,5 +2,5 @@ Create Database CAtech;
 
 Use CAtech;
 
-Create table CAtech.user(id int, name varchar(15), xToken varchar(40));
 
+Create table CAtech.users(id int not null primary key AUTO_INCREMENT, name varchar(20), token varchar(200));
