@@ -13,7 +13,7 @@ import (
 )
 
 func JWTTokenMaker(ctx *gin.Context) string {
-	user := userstruct.User{}
+	user := userstruct.Users{}
 	if err := ctx.Bind(&user); err != nil{
 		ctx.String(http.StatusBadRequest, "Bad request")
 		log.Fatalln(err)

@@ -16,7 +16,9 @@ func main(){
 		})
 	})
 
-	router.GET("/user/create", manageuser.CreateUser)
+	router.GET("/user/get", manageuser.GetUserToken)
+	router.POST("/user/create", manageuser.CreateUser)
+
 
 	router.Run(":8085")
 }
