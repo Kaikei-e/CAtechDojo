@@ -13,6 +13,7 @@ RUN go get -u github.com/jinzhu/gorm
 RUN go get -u github.com/auth0/go-jwt-middleware
 RUN go get -u github.com/form3tech-oss/jwt-go
 RUN go get -u github.com/joho/godotenv
+RUN go get -u github.com/jinzhu/gorm/dialects/mysql
 
 
 EXPOSE 8085
