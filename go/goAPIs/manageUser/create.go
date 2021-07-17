@@ -1,27 +1,33 @@
 package manageuser
 
 import (
+	dbmanage "app/DBmanage"
 	jwtauth "app/JWTauth"
-	userstruct "app/userStruct"
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
 
 func CreateUser(ctx *gin.Context){
-	theToken := jwtauth.JWTTokenMaker(ctx)
 
-	var theUser userstruct.Users
+	theUser := jwtauth.JWTTokenMaker(ctx)
 
-	if err := ctx.ShouldBindJSON(&theUser); err != nil{
-		ctx.JSON(http.StatusBadRequest, gin.H{
-			"error": err.Error(),
-		})
-		return
-	}
+
+	db := dbmanage.DBconnection
+	defer db().Close()
+
+	log.Println(theUser)
+	db().LogMode(true)
+
+	db().Create(&theUser)
 
 
 	ctx.JSON(http.StatusOK, gin.H{
-		"token": theToken,
+		"token": theUser.Token,
 	})
 }
+
+
+
+

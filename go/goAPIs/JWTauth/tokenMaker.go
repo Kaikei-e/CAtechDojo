@@ -12,9 +12,9 @@ import (
 	"github.com/joho/godotenv"
 )
 
-func JWTTokenMaker(ctx *gin.Context) string {
+func JWTTokenMaker(ctx *gin.Context) userstruct.Users {
 	user := userstruct.Users{}
-	if err := ctx.Bind(&user); err != nil{
+	if err := ctx.ShouldBind(&user); err != nil{
 		ctx.String(http.StatusBadRequest, "Bad request")
 		log.Fatalln(err)
 
@@ -43,6 +43,9 @@ func JWTTokenMaker(ctx *gin.Context) string {
 
 	}
 
-	return tokenSignature
+	user.Token = tokenSignature
+	user.Id = 0
+
+	return user
 
 }
