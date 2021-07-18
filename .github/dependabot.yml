@@ -1,6 +1,6 @@
 version: 2
 updates:
-  - package-ecosystem: "Go" # See documentation for possible values
+  - package-ecosystem: "gomod" # See documentation for possible values
     directory: "/"
     schedule:
       interval: weekly
