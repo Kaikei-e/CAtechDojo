@@ -14,6 +14,7 @@ CREATE TABLE `CAtech`.`gacha_table` (
   `uniqueID` CHAR(100) NOT NULL,
   `chara_ID` INT NOT NULL,
   `chara_name` VARCHAR(45) NOT NULL,
+  `userID` INT NOT NULL,
   PRIMARY KEY (`uniqueID`));
 
   CREATE TABLE `CAtech`.`gacha_rate` (
